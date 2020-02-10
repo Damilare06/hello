@@ -43,7 +43,7 @@ contains
     write (*, *) " send density has engine type: ", IO%engine_type
     if (TRIM(IO%engine_type) /= 'SST') stop 'Wrong engine_type'
 
-    call adios2_open(Writer, IO, "/lore/adesoa/dev/hello/dens.bp", adios2_mode_write, ierr)
+    call adios2_open(Writer, IO, "dens.bp", adios2_mode_write, ierr)
     call adios2_begin_step(Writer, adios2_step_mode_append, ierr)
     call adios2_put(Writer, gdens, density, ierr)
     call adios2_end_step(Writer, ierr)

@@ -46,7 +46,7 @@ void read_density(float * &dens)
     IO.SetEngine("Sst");
     IO.SetParameters({{"DataTransport","RDMA"},  {"OpenTimeoutSecs", "360"}});
 
-    adios2::Engine Reader = IO.Open("/lore/adesoa/dev/hello/dens.bp", adios2::Mode::Read);
+    adios2::Engine Reader = IO.Open("dens.bp", adios2::Mode::Read);
     Reader.BeginStep();
     if(Reader) std::cout << "1.0" << std::endl;
     adios2::Variable<float> cdens = IO.InquireVariable<float>("gdens");
