@@ -36,9 +36,9 @@ target_link_libraries( ${LIB_NAME}  ${MPI_CXX_LIBRARIES} ${ADIOS2_LIB})
 add_executable(app1_2d app1_2d.cc)
 target_link_libraries(app1_2d  ${MPI_CXX_LIBRARIES} ${ADIOS2_LIB})
 
-add_executable(app1_f app1.F90 functions.F90)
-target_link_libraries(app1_f  ${MPI_CXX_LIBRARIES} ${ADIOS2_F})
-set_target_properties(app1_f PROPERTIES
+add_executable(app1_2d_f app1.F90 functions.F90)
+target_link_libraries(app1_2d_f  ${MPI_CXX_LIBRARIES} ${ADIOS2_F})
+set_target_properties(app1_2d_f PROPERTIES
   LINKER_LANGUAGE Fortran
 )
 

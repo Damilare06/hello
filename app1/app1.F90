@@ -5,7 +5,11 @@ program app1
 
   implicit none
 
-  real, dimension(:), allocatable :: myDens, field
+  real, dimension(:), allocatable :: field
+  real, dimension(0:3,0:1) :: density
+  !real :: density(4,2) = reshape((/1,2,3,4,5,6,7,8/), (/4,2/))
+  !REAL,DIMENSION(4,2) :: density = RESHAPE([1,2,3,4,5,6,7,8],[4,2])
+
   integer :: inx, irank, isize, i , comm
   integer :: ierr = 0
   ! Launch MPI
@@ -14,19 +18,16 @@ program app1
   call MPI_Comm_size(MPI_COMM_WORLD, isize, ierr)
 
   ! Density variables
-  inx = 10
-  allocate( myDens(inx) )
-  allocate( field(inx) )
+density(0,0)= 1.0
+density(1,0)= 2.0
+density(2,0)= 3.0
+density(3,0)= 4.0
+density(0,1)= 5.0
+density(1,1)= 6.0
+density(2,1)= 7.0
+density(3,1)= 8.0
 
-  do i=1,inx
-  myDens(i) = (10.0 * irank) + i - 1
-  end do
-
-  call write_density(myDens, isize, irank, inx, ierr)
-  call read_field(field, isize, irank, inx, ierr)
-
-  if( allocated(myDens) ) deallocate(myDens)
-  if( allocated(field) ) deallocate(field)
+  call write_density(density, ierr)
 
   print *, 'app1_f done'
   call MPI_Finalize(ierr)
